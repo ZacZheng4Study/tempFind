@@ -7,9 +7,11 @@ public int[] v;
 public int[][]matrix;
 public int max;
 public HashMap<MyArray,Integer> pathCode;
+public HashMap<Integer,int[]> pathCodeToPoint; 
 private int[] tempPath;
 public MatrixDG(String topo){
 	pathCode=new HashMap<MyArray,Integer>();
+	pathCodeToPoint=new HashMap<Integer,int[]>();
 	tempPath=new int[4];
 	String[] topoOneLine=topo.split("\n");
 	for(int k=0;k<topoOneLine.length;k++){
@@ -34,6 +36,7 @@ public MatrixDG(String topo){
 		int[] tempCode=new int[]{tempPath[1],tempPath[2]};
 		MyArray mA=new MyArray(tempCode);
 		pathCode.put(mA, tempPath[0]);
+		pathCodeToPoint.put(tempPath[0], tempCode);
 	}
 }
 }

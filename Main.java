@@ -34,7 +34,7 @@ public class Main
 
         // 功能实现入口
         String resultStr = Route.searchRoute(graphContent, conditionContent);
-
+        System.out.println(resultStr);
         // 写入输出文件
         FileUtil.write(resultFilePath, resultStr, false);
 

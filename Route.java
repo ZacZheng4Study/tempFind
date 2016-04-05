@@ -20,13 +20,29 @@ public final class Route
     {
        MatrixDG mdg=new MatrixDG(graphContent);
        Destination testD =new Destination(condition);
-       for(int i=0;i<testD.middle.length;i++){
-       System.out.print(testD.middle[i]);}
+//       for(int i=0;i<testD.middle.length;i++){
+//       System.out.print(testD.middle[i]);}
+       for(int rand=0;rand<100;rand++){
        DJ test=new DJ(mdg,testD);
-       int[][] answer=test.findDJ();
+       DJOut djOut=test.findDJ();
        HamiltonDFS obj = new HamiltonDFS();
-       obj.HamiltonPath(answer, 1, 20);
-    	return "hello world!";
+       obj.HamiltonPath(djOut.answer, 1, 1);
+       MatrixDG mdg1=new MatrixDG(graphContent);
+       LastConnect lc=new LastConnect(mdg1,djOut,testD);
+       DJOneAnswer djo=lc.chooseNearst(obj);
+       String answer="";
+       for(int i:djo.pathCode){
+    	   answer+=i+"|";
+       }
+       
+       if(answer.length()==0){
+    	  continue;
+       }
+       else{
+       answer=answer.substring(0, answer.length()-1);}
+     //  answer+="weight="+djo.weight;
+    	return answer;
     }
+	return "NA";}
 
 }
